@@ -4,3 +4,11 @@
 gradle
 gradlew
 gradlew.bat
+core/build/
+core/core.iml
+desktop/build/
+desktop/desktop.iml
+out/
+platformGame.iml
+platformGame.ipr
+platformGame.iws
