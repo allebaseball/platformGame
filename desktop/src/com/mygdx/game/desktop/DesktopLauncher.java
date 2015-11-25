@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Team3";
-		config.width = 1280/2;
-		config.height = 720/2;
+		config.width = Team3.V_WIDTH;
+		config.height = Team3.V_HEIGHT;
 		config.fullscreen = false;
 		config.vSyncEnabled = false;
 		new LwjglApplication(new Team3(), config);

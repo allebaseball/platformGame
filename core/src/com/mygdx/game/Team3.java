@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Screens.PlayScreen;
 
 public class Team3 extends Game {
-	public static final int V_WIDTH = 400;
-	public static final int V_HEIGHT = 208;
+	public static final int V_WIDTH = 416 * 16 / 9;
+	public static final int V_HEIGHT = 416;
 
 	public SpriteBatch batch;
 
@@ -14,8 +14,6 @@ public class Team3 extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		setScreen(new PlayScreen(this));
-
-
 	}
 
 	@Override
