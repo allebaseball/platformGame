@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="32" tileheight="32" nextobjectid="42">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="32" tileheight="32" nextobjectid="52">
  <tileset firstgid="1" name="Tiles_32x32" tilewidth="32" tileheight="32" tilecount="64">
   <image source="../sprites/Tiles_32x32.png" width="256" height="256"/>
+  <tile id="41">
+   <objectgroup draworder="index">
+    <object id="0" x="29" y="11">
+     <polyline points="0,0 -9,8 -14,5 -24,6 -26,12 -18,14 -10,14 -6,17 2,15"/>
+    </object>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="65" name="blueRekt" tilewidth="32" tileheight="32" tilecount="1">
+  <image source="../sprites/blueRekt.png" width="40" height="40"/>
  </tileset>
  <layer name="Background" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt1bENgDAMBMBMAyRi//liunRUVjC6k761v7HcGvBHR+RMnD8i95L+si+7D1T33Mi1uwRQml8LAAAAAAAAAAB83QTRSgI0
+   eJzt00ENwDAAA7FSK39S45DPSZ0tHYPknnOunot/qHcm/2VX70z+y67emfyXXb0z+S+7emfyX3b1zuS/7OqdyX/Z1TuT/7Krdyb/ZVfvTP7Lrt6Z/JddvTP5L7sPmWaFjg==
   </data>
  </layer>
  <layer name="Graphic Layer" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKgDAMBEA9iA/q///mtQhRDJYUOgOL0EDxkIVuG7CSVv0DQNoZnLfb9+scGCPqbD/v8zR7uwsAVvP3G9dbGcbZZfpA5JDpA5Hq3RT9Ja96N0V/yaveTdFf8qp3U/SXvOrdFP0l7wLHpA6d
+   eJzt2EEKgzAQBdDsepNaWnc5gPe/lQqWiBANUavQ9+CjGBKyGSYmBIDkPaQd0lTOf07zx7yO2hT8kbGGausPADjPr3r09zztLA37xas3AFR7ZL7HxXNtvOaO6xPSvZZ+DOVyNTsfn2dtbGstACCvpJf6VwaAMjHzDtxLJ5cEjtADCOscoQ==
   </data>
  </layer>
  <objectgroup name="ground">
-  <object id="33" x="0" y="192" width="3360" height="32"/>
+  <object id="47" x="0" y="384" width="3008" height="32"/>
  </objectgroup>
  <objectgroup name="casses">
-  <object id="11" x="800" y="96" width="32" height="32"/>
-  <object id="12" x="832" y="96" width="32" height="32"/>
-  <object id="13" x="864" y="96" width="32" height="32"/>
-  <object id="14" x="576" y="96" width="32" height="32"/>
-  <object id="15" x="608" y="96" width="32" height="32"/>
-  <object id="16" x="640" y="96" width="32" height="32"/>
-  <object id="17" x="672" y="96" width="32" height="32"/>
-  <object id="18" x="896" y="96" width="32" height="32"/>
-  <object id="19" x="928" y="96" width="32" height="32"/>
-  <object id="20" x="416" y="64" width="32" height="32"/>
-  <object id="21" x="320" y="96" width="32" height="32"/>
+  <object id="11" x="800" y="224" width="32" height="32"/>
+  <object id="12" x="832" y="224" width="32" height="32"/>
+  <object id="13" x="864" y="224" width="32" height="32"/>
+  <object id="14" x="576" y="224" width="32" height="32"/>
+  <object id="15" x="608" y="224" width="32" height="32"/>
+  <object id="16" x="640" y="224" width="32" height="32"/>
+  <object id="17" x="672" y="224" width="32" height="32"/>
+  <object id="18" x="896" y="224" width="32" height="32"/>
+  <object id="19" x="928" y="224" width="32" height="32"/>
+  <object id="20" x="416" y="192" width="32" height="32"/>
+  <object id="21" x="320" y="224" width="32" height="32"/>
+  <object id="50" x="480" y="288" width="32" height="32"/>
+  <object id="51" x="512" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="gems">
-  <object id="34" x="128" y="160" width="32" height="32"/>
-  <object id="35" x="192" y="160" width="32" height="32"/>
-  <object id="36" x="416" y="32" width="32" height="32"/>
-  <object id="37" x="608" y="64" width="32" height="32"/>
-  <object id="38" x="672" y="64" width="32" height="32"/>
-  <object id="39" x="768" y="160" width="32" height="32"/>
-  <object id="40" x="864" y="64" width="32" height="32"/>
-  <object id="41" x="928" y="64" width="32" height="32"/>
+  <object id="34" x="160" y="352" width="32" height="32"/>
+  <object id="35" x="256" y="352" width="32" height="32"/>
+  <object id="36" x="416" y="160" width="32" height="32"/>
+  <object id="37" x="608" y="192" width="32" height="32"/>
+  <object id="38" x="672" y="192" width="32" height="32"/>
+  <object id="39" x="768" y="288" width="32" height="32"/>
+  <object id="40" x="864" y="192" width="32" height="32"/>
+  <object id="41" x="928" y="192" width="32" height="32"/>
  </objectgroup>
 </map>
