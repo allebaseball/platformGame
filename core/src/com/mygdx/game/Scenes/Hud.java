@@ -42,22 +42,28 @@ public class Hud {
 
         countDownLabel = new Label(
                 String.format("%03d", worldTimer),
-                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE)
+        );
         scoreLabel = new Label(
                 String.format("%06d", score),
-                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE)
+        );
         timeLabel = new Label(
                 "TIME",
-                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE)
+        );
         levelLabel = new Label(
                 "1-1",
-                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE)
+        );
         worldLabel = new Label(
                 "World",
-                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE)
+        );
         teamLabel = new Label(
                 "Team3",
-                new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+                new Label.LabelStyle(new BitmapFont(), Color.WHITE)
+        );
 
         table.add(teamLabel).expandX().padTop(10);
         table.add(worldLabel).expandX().padTop(10);

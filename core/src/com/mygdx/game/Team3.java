@@ -7,6 +7,7 @@ import com.mygdx.game.Screens.PlayScreen;
 public class Team3 extends Game {
 	public static final int V_WIDTH = 416 * 16 / 9;
 	public static final int V_HEIGHT = 416;
+	public static final float PPM = 100;
 
 	public SpriteBatch batch;
 

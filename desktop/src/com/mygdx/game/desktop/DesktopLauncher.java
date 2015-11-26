@@ -15,3 +15,4 @@ public class DesktopLauncher {
 		new LwjglApplication(new Team3(), config);
 	}
 }
+
