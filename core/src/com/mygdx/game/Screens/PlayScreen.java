@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Sprites.Player;
 import com.mygdx.game.Team3;
+import com.mygdx.game.Tools.B2WorldCreator;
 
 public class PlayScreen implements Screen {
     private Team3 game;
@@ -59,68 +60,10 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
 
+        new B2WorldCreator(world, map);
+
+        //Create player
         p1 = new Player(world);
-
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-
-        CircleShape  gemShape = new CircleShape();
-
-        FixtureDef fdef = new FixtureDef();
-        Body body;
-
-        //Create ground bodies/fixtures
-        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(
-                    (rect.getX() + rect.getWidth() / 2) / Team3.PPM,
-                    (rect.getY() + rect.getHeight() / 2) / Team3.PPM
-            );
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2) / Team3.PPM, (rect.getHeight() / 2) / Team3.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-
-        //Create casses bodies/fixtures
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(
-                    (rect.getX() + rect.getWidth() / 2) / Team3.PPM,
-                    (rect.getY() + rect.getHeight() / 2) / Team3.PPM
-            );
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2) / Team3.PPM, (rect.getHeight() / 2) / Team3.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-
-        //Create gems bodies/fixtures
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(
-                    (rect.getX() + rect.getWidth() / 2) / Team3.PPM,
-                    (rect.getY() + rect.getHeight() / 2) / Team3.PPM
-            );
-
-            body = world.createBody(bdef);
-
-//            shape.setAsBox((rect.getWidth() / 2) / Team3.PPM, (rect.getHeight() / 2) / Team3.PPM);
-            gemShape.setRadius(0.1f);
-//            fdef.shape = shape;
-            fdef.shape = gemShape;
-            body.createFixture(fdef);
-        }
     }
 
     @Override
@@ -129,29 +72,29 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            p1.b2body.applyLinearImpulse(new Vector2(0, 5f), p1.b2body.getWorldCenter(), true);
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
+            p1.b2body.applyLinearImpulse(new Vector2(0.1f, 0), p1.b2body.getWorldCenter(), true);
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
+            p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
+        }
+
 //        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 //            p1.b2body.applyLinearImpulse(new Vector2(0, 4f), p1.b2body.getWorldCenter(), true);
 //        }
 //
-//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
-//            p1.b2body.applyLinearImpulse(new Vector2(0.1f, 0), p1.b2body.getWorldCenter(), true);
+//        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+//            p1.b2body.setLinearVelocity(2f, p1.b2body.getLinearVelocity().y);
 //        }
 //
-//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
-//            p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
+//        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+//            p1.b2body.setLinearVelocity(-2f, p1.b2body.getLinearVelocity().y);
 //        }
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            p1.b2body.applyLinearImpulse(new Vector2(0, 4f), p1.b2body.getWorldCenter(), true);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            p1.b2body.setLinearVelocity(2f, p1.b2body.getLinearVelocity().y);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            p1.b2body.setLinearVelocity(-2f, p1.b2body.getLinearVelocity().y);
-        }
 
     }
 
@@ -171,7 +114,7 @@ public class PlayScreen implements Screen {
         update(delta);
 
         //Set color and clear screen
-        Gdx.gl.glClearColor(1, 1, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Render game map
@@ -210,6 +153,12 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
+
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        b2dr.dispose();
+        hud.dispose();
 
     }
 }
