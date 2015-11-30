@@ -84,6 +84,10 @@ public class PlayScreen implements Screen {
             p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
         }
 
+        if(Gdx.input.isKeyPressed(Input.Keys.E)) {
+            p1.switchPlayer(true);
+        }
+
 //        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 //            p1.b2body.applyLinearImpulse(new Vector2(0, 4f), p1.b2body.getWorldCenter(), true);
 //        }

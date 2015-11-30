@@ -11,10 +11,11 @@ public class Player extends Sprite {
 
     public BodyDef bdef;
 
+    private int pNum;
+
     public Player(World world) {
         super(new Texture("sprites/redRekt.png"));
         this.world = world;
-        this.setTexture(new Texture("sprites/yellRekt.png"));
         definePlayer();
         setBounds(0, 0, 13 / Team3.PPM, 25 / Team3.PPM);
     }
@@ -24,6 +25,17 @@ public class Player extends Sprite {
                 b2body.getPosition().x - getWidth() / 2,
                 b2body.getPosition().y - getHeight() / 2
         );
+    }
+
+    public void switchPlayer(boolean verse) {
+
+        if(verse == true) {
+            if(++pNum > 3) pNum = 1;
+
+            setTexture(new Texture("sprites/yellRekt.png"));
+
+        }
+
     }
 
     public void definePlayer() {
