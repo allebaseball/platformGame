@@ -4,7 +4,6 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Sprites.Cass;
 import com.mygdx.game.Sprites.Gem;
@@ -16,8 +15,6 @@ public class B2WorldCreator {
 
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
-
-        CircleShape gemShape = new CircleShape();
 
         FixtureDef fdef = new FixtureDef();
         Body body;

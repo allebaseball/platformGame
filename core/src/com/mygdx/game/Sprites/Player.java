@@ -1,7 +1,7 @@
 package com.mygdx.game.Sprites;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Team3;
 
@@ -11,9 +11,31 @@ public class Player extends Sprite {
 
     public BodyDef bdef;
 
+    private int pNum;
+
     public Player(World world) {
+        super(new Texture("sprites/redRekt.png"));
         this.world = world;
         definePlayer();
+        setBounds(0, 0, 13 / Team3.PPM, 25 / Team3.PPM);
+    }
+
+    public void update (float dt) {
+        setPosition(
+                b2body.getPosition().x - getWidth() / 2,
+                b2body.getPosition().y - getHeight() / 2
+        );
+    }
+
+    public void switchPlayer(boolean verse) {
+
+        if(verse == true) {
+            if(++pNum > 3) pNum = 1;
+
+            setTexture(new Texture("sprites/yellRekt.png"));
+
+        }
+
     }
 
     public void definePlayer() {
@@ -23,10 +45,6 @@ public class Player extends Sprite {
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-
-//        CircleShape shape = new CircleShape();
-//        shape.setRadius(10 / Team3.PPM);
-//        fdef.shape = shape;
 
         PolygonShape rektPlayer = new PolygonShape();
         rektPlayer.setAsBox(13 / Team3.PPM, 25 / Team3.PPM);

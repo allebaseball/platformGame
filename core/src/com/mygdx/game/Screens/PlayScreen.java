@@ -84,6 +84,10 @@ public class PlayScreen implements Screen {
             p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
         }
 
+        if(Gdx.input.isKeyPressed(Input.Keys.E)) {
+            p1.switchPlayer(true);
+        }
+
 //        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 //            p1.b2body.applyLinearImpulse(new Vector2(0, 4f), p1.b2body.getWorldCenter(), true);
 //        }
@@ -102,6 +106,8 @@ public class PlayScreen implements Screen {
         handleInput(dt);
 
         world.step(1 / 60f, 6, 2);
+
+        p1.update(dt);
 
         gamecam.position.x = p1.b2body.getPosition().x;
 
@@ -123,12 +129,18 @@ public class PlayScreen implements Screen {
         //Render Box2DDebugLines
         b2dr.render(world, gamecam.combined);
 
+        game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.begin();
+
+        p1.draw(game.batch);
+
+        FPSfont.draw(game.batch, "FPS: " +Gdx.graphics.getFramesPerSecond(), 10f, 20f);
+
+        game.batch.end();
+
+        //Hud draw
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-
-        game.batch.begin();
-        FPSfont.draw(game.batch, "FPS: " +Gdx.graphics.getFramesPerSecond(), 10f, 20f);
-        game.batch.end();
     }
 
     @Override
