@@ -47,7 +47,6 @@ public class PlayScreen implements Screen{
         hud = new Hud(game.batch);
 
         FPSfont = new BitmapFont();
-//        FPSfont.getData().setScale(.01f,.01f);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("maps/TestTiledMap.tmx");
@@ -75,20 +74,22 @@ public class PlayScreen implements Screen{
             p1.b2body.applyLinearImpulse(new Vector2(0, 5f), p1.b2body.getWorldCenter(), true);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
             p1.b2body.applyLinearImpulse(new Vector2(0.1f, 0), p1.b2body.getWorldCenter(), true);
-//            p1.setPosition(p1.b2body.getPosition().x + 5 / Team3.PPM, p1.b2body.getPosition().y);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
             p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+
+        //Player change
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             p1.switchPlayer(-1);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             p1.switchPlayer(1);
         }
+
 //        if (keyUp(Input.Keys.LEFT))
 //            p1.b2body.setLinearVelocity(new Vector2(0f,p1.b2body.getLinearVelocity().y));
     }
@@ -99,7 +100,8 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         p1.update(dt);
-        if(p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2)
+
+        if (p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2)
             gamecam.position.x = p1.b2body.getPosition().x;
 
         gamecam.update();
@@ -130,7 +132,7 @@ public class PlayScreen implements Screen{
         game.FPSbatch.begin();
         FPSfont.draw(
                 game.FPSbatch,
-                "FPS: " +Gdx.graphics.getFramesPerSecond(),
+                "FPS: " + Gdx.graphics.getFramesPerSecond(),
                 gamePort.getWorldWidth() / 2 + 20,
                 gamePort.getWorldHeight() / 2 + 20
         );
@@ -139,9 +141,6 @@ public class PlayScreen implements Screen{
         //Hud draw
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-
-
-
     }
 
     @Override
@@ -166,12 +165,11 @@ public class PlayScreen implements Screen{
 
     @Override
     public void dispose() {
-
         map.dispose();
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
         hud.dispose();
-
     }
+
 }

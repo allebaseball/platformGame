@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Team3;
 
 public class Cass {
-
     protected World world;
     protected TiledMap map;
     protected TiledMapTile tile;
@@ -36,4 +35,5 @@ public class Cass {
 
         body.createFixture(fdef);
     }
+
 }

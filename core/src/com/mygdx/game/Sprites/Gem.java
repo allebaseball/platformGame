@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Team3;
 
 public class Gem {
-
     protected World world;
     protected TiledMap map;
     protected TiledMapTile tile;
@@ -33,6 +32,7 @@ public class Gem {
         body = world.createBody(bdef);
 
         gemShape.setRadius(0.1f);
+
         //Offset gems colliders position
         gemShape.setPosition(new Vector2(-0.5f / Team3.PPM, -2 / Team3.PPM));
 
@@ -40,4 +40,5 @@ public class Gem {
 
         body.createFixture(fdef);
     }
+
 }

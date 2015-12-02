@@ -23,4 +23,5 @@ public class Team3 extends Game {
 	public void render () {
 		super.render();
 	}
+
 }
