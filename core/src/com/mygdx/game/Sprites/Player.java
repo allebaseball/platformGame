@@ -32,11 +32,10 @@ public class Player extends Sprite {
     }
 
     public void switchPlayer(int verse) {
-
-        if(verse == 1)
-            if(++pNum > 3) pNum = 1;
-        if(verse == -1)
-            if(--pNum < 1)pNum = 3;
+        if (verse == 1)
+            if (++pNum > 3) pNum = 1;
+        if (verse == -1)
+            if (--pNum < 1) pNum = 3;
 
         switch(pNum) {
             case 1:
@@ -51,8 +50,9 @@ public class Player extends Sprite {
 //                setTexture(new Texture("sprites/greenRekt.png"));
                 setTexture(green);
                 break;
+            default:
+                break;
         }
-
     }
 
     public void definePlayer() {

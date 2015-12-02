@@ -12,7 +12,6 @@ import com.mygdx.game.Team3;
 public class B2WorldCreator {
 
     public B2WorldCreator(World world, TiledMap map) {
-
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
 
@@ -50,4 +49,5 @@ public class B2WorldCreator {
             new Gem(world, map, rect);
         }
     }
+
 }
