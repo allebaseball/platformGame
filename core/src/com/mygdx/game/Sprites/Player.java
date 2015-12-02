@@ -11,13 +11,17 @@ public class Player extends Sprite {
 
     public BodyDef bdef;
 
-    private int pNum;
+    public Texture red = new Texture("sprites/redRekt.png");
+    public Texture yell = new Texture("sprites/yellRekt.png");
+    public Texture green = new Texture("sprites/greenRekt.png");
+
+    private int pNum = 1;
 
     public Player(World world) {
         super(new Texture("sprites/redRekt.png"));
         this.world = world;
         definePlayer();
-        setBounds(0, 0, 13 / Team3.PPM, 25 / Team3.PPM);
+        setBounds(0, 0, 26 / Team3.PPM, 50 / Team3.PPM);
     }
 
     public void update (float dt) {
@@ -27,13 +31,26 @@ public class Player extends Sprite {
         );
     }
 
-    public void switchPlayer(boolean verse) {
+    public void switchPlayer(int verse) {
 
-        if(verse == true) {
+        if(verse == 1)
             if(++pNum > 3) pNum = 1;
+        if(verse == -1)
+            if(--pNum < 1)pNum = 3;
 
-            setTexture(new Texture("sprites/yellRekt.png"));
-
+        switch(pNum) {
+            case 1:
+//                setTexture(new Texture("sprites/redRekt.png"));
+                setTexture(red);
+                break;
+            case 2:
+//                setTexture(new Texture("sprites/yellRekt.png"));
+                setTexture(yell);
+                break;
+            case 3:
+//                setTexture(new Texture("sprites/greenRekt.png"));
+                setTexture(green);
+                break;
         }
 
     }

@@ -10,10 +10,12 @@ public class Team3 extends Game {
 	public static final float PPM = 100;
 
 	public SpriteBatch batch;
+	public SpriteBatch FPSbatch;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		FPSbatch = new SpriteBatch();
 		setScreen(new PlayScreen(this));
 	}
 

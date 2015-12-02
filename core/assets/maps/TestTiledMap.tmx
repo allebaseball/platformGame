@@ -15,7 +15,7 @@
  </tileset>
  <layer name="Background" width="240" height="13">
   <data encoding="base64" compression="zlib">
-   eJzt00ENwDAAA7FSK39S45DPSZ0tHYPknnOunot/qHcm/2VX70z+y67emfyXXb0z+S+7emfyX3b1zuS/7OqdyX/Z1TuT/7Krdyb/ZVfvTP7Lrt6Z/JddvTP5L7sPmWaFjg==
+   eJzt08EJwEAMA8FrKEWk/6ZSwwmCwJ6B/flpveecV+Nih/afyX7Jtf9M9kuu/WeyX3LtP5P9kmv/meyXXPvPZL/kbn7iubyX/fIv+50ZO9jvzNjBfmfGDvY7M3Zo/5nsl9wHzjyFKg==
   </data>
  </layer>
  <layer name="Graphic Layer" width="240" height="13">
@@ -26,7 +26,7 @@
  <objectgroup name="ground">
   <object id="47" x="0" y="384" width="3008" height="32"/>
  </objectgroup>
- <objectgroup name="casses">
+ <objectgroup name="casses" visible="0">
   <object id="11" x="800" y="224" width="32" height="32"/>
   <object id="12" x="832" y="224" width="32" height="32"/>
   <object id="13" x="864" y="224" width="32" height="32"/>
@@ -46,7 +46,7 @@
   <object id="55" x="1152" y="256" width="32" height="32"/>
   <object id="56" x="1280" y="288" width="128" height="32"/>
  </objectgroup>
- <objectgroup name="gems">
+ <objectgroup name="gems" visible="0">
   <object id="34" x="160" y="352" width="32" height="32"/>
   <object id="35" x="256" y="352" width="32" height="32"/>
   <object id="36" x="416" y="160" width="32" height="32"/>

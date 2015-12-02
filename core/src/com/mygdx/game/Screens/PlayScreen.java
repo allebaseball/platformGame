@@ -6,12 +6,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -21,7 +18,7 @@ import com.mygdx.game.Sprites.Player;
 import com.mygdx.game.Team3;
 import com.mygdx.game.Tools.B2WorldCreator;
 
-public class PlayScreen implements Screen {
+public class PlayScreen implements Screen{
     private Team3 game;
 
     private OrthographicCamera gamecam;
@@ -50,6 +47,7 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         FPSfont = new BitmapFont();
+//        FPSfont.getData().setScale(.01f,.01f);
 
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("maps/TestTiledMap.tmx");
@@ -73,33 +71,26 @@ public class PlayScreen implements Screen {
 
     public void handleInput(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+            p1.b2body.setLinearVelocity(new Vector2(p1.b2body.getLinearVelocity().x, 0f));
             p1.b2body.applyLinearImpulse(new Vector2(0, 5f), p1.b2body.getWorldCenter(), true);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
             p1.b2body.applyLinearImpulse(new Vector2(0.1f, 0), p1.b2body.getWorldCenter(), true);
+//            p1.setPosition(p1.b2body.getPosition().x + 5 / Team3.PPM, p1.b2body.getPosition().y);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
             p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.E)) {
-            p1.switchPlayer(true);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            p1.switchPlayer(-1);
         }
-
-//        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-//            p1.b2body.applyLinearImpulse(new Vector2(0, 4f), p1.b2body.getWorldCenter(), true);
-//        }
-//
-//        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-//            p1.b2body.setLinearVelocity(2f, p1.b2body.getLinearVelocity().y);
-//        }
-//
-//        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-//            p1.b2body.setLinearVelocity(-2f, p1.b2body.getLinearVelocity().y);
-//        }
-
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            p1.switchPlayer(1);
+        }
+//        if (keyUp(Input.Keys.LEFT))
+//            p1.b2body.setLinearVelocity(new Vector2(0f,p1.b2body.getLinearVelocity().y));
     }
 
     public void update(float dt) {
@@ -108,8 +99,8 @@ public class PlayScreen implements Screen {
         world.step(1 / 60f, 6, 2);
 
         p1.update(dt);
-
-        gamecam.position.x = p1.b2body.getPosition().x;
+        if(p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2)
+            gamecam.position.x = p1.b2body.getPosition().x;
 
         gamecam.update();
         renderer.setView(gamecam);
@@ -133,14 +124,24 @@ public class PlayScreen implements Screen {
         game.batch.begin();
 
         p1.draw(game.batch);
-
-        FPSfont.draw(game.batch, "FPS: " +Gdx.graphics.getFramesPerSecond(), 10f, 20f);
-
         game.batch.end();
+
+        //FPS on screen
+        game.FPSbatch.begin();
+        FPSfont.draw(
+                game.FPSbatch,
+                "FPS: " +Gdx.graphics.getFramesPerSecond(),
+                gamePort.getWorldWidth() / 2 + 20,
+                gamePort.getWorldHeight() / 2 + 20
+        );
+        game.FPSbatch.end();
 
         //Hud draw
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+
+
+
     }
 
     @Override
