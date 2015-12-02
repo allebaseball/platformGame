@@ -99,7 +99,7 @@ public class PlayScreen implements Screen{
         world.step(1 / 60f, 6, 2);
 
         p1.update(dt);
-        if(p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2)
+        if(p1.b2body.getPosition().x > (gamePort.getWorldWidth() / 2) + 32 / Team3.PPM)
             gamecam.position.x = p1.b2body.getPosition().x;
 
         gamecam.update();
