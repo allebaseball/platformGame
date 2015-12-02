@@ -75,6 +75,14 @@ public class Player extends Sprite {
         jumpMove = flag;
     }
 
+    public void resetMove() {
+        leftMove = false;
+        rightMove = false;
+        first = false;
+
+        b2body.setLinearVelocity(0f, b2body.getLinearVelocity().y);
+    }
+
     public void switchPlayer(int verse) {
         if (verse == 1)
             if (++pNum > 3) pNum = 1;
@@ -100,7 +108,7 @@ public class Player extends Sprite {
 
     public void definePlayer() {
         bdef = new BodyDef();
-        bdef.position.set(30 / Team3.PPM, 300 / Team3.PPM);
+        bdef.position.set(100 / Team3.PPM, 300 / Team3.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 

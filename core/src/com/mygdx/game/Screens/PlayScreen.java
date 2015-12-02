@@ -52,7 +52,7 @@ public class PlayScreen implements Screen{
         map = mapLoader.load("maps/TestTiledMap.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Team3.PPM);
 
-        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+        gamecam.position.set(gamePort.getWorldWidth() / 2 + 32 / Team3.PPM, gamePort.getWorldHeight() / 2, 0);
 
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
@@ -107,7 +107,7 @@ public class PlayScreen implements Screen{
 
         p1.update(dt);
 
-        if (p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2)
+        if (p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2 + 32 / Team3.PPM)
             gamecam.position.x = p1.b2body.getPosition().x;
 
 //        gamecam.position.x = p1.b2body.getPosition().x;

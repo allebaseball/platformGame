@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="32" tileheight="32" nextobjectid="57">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="240" height="13" tilewidth="32" tileheight="32" nextobjectid="60">
  <tileset firstgid="1" name="Tiles_32x32" tilewidth="32" tileheight="32" tilecount="64">
   <image source="../sprites/Tiles_32x32.png" width="256" height="256"/>
   <tile id="41">
@@ -25,8 +25,10 @@
  </layer>
  <objectgroup name="ground">
   <object id="47" x="0" y="384" width="3008" height="32"/>
+  <object id="57" x="0" y="0" width="32" height="384"/>
+  <object id="59" x="1064" y="515"/>
  </objectgroup>
- <objectgroup name="casses" visible="0">
+ <objectgroup name="casses">
   <object id="11" x="800" y="224" width="32" height="32"/>
   <object id="12" x="832" y="224" width="32" height="32"/>
   <object id="13" x="864" y="224" width="32" height="32"/>
@@ -46,7 +48,7 @@
   <object id="55" x="1152" y="256" width="32" height="32"/>
   <object id="56" x="1280" y="288" width="128" height="32"/>
  </objectgroup>
- <objectgroup name="gems" visible="0">
+ <objectgroup name="gems">
   <object id="34" x="160" y="352" width="32" height="32"/>
   <object id="35" x="256" y="352" width="32" height="32"/>
   <object id="36" x="416" y="160" width="32" height="32"/>

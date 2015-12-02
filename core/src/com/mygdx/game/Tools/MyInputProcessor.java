@@ -34,10 +34,10 @@ public class MyInputProcessor implements InputProcessor {
     public boolean keyUp(int keycode) {
         switch (keycode) {
             case Input.Keys.LEFT:
-                playS.p1.setLeftMove(false);
+                playS.p1.resetMove();
                 break;
             case Input.Keys.RIGHT:
-                playS.p1.setRightMove(false);
+                playS.p1.resetMove();
                 break;
             case Input.Keys.UP:
                 playS.p1.setJump(false);
