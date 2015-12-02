@@ -34,7 +34,7 @@ public class PlayScreen implements Screen{
     private World world;
     private Box2DDebugRenderer b2dr;
 
-    private Player p1;
+    public Player p1;
 
     private BitmapFont FPSfont;
 
@@ -69,33 +69,39 @@ public class PlayScreen implements Screen{
     }
 
     public void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            p1.b2body.setLinearVelocity(new Vector2(p1.b2body.getLinearVelocity().x, 0f));
-            p1.b2body.applyLinearImpulse(new Vector2(0, 5f), p1.b2body.getWorldCenter(), true);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
-            p1.b2body.applyLinearImpulse(new Vector2(0.1f, 0), p1.b2body.getWorldCenter(), true);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
-            p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
-        }
-
-        //Player change
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            p1.switchPlayer(-1);
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-            p1.switchPlayer(1);
-        }
-
-//        if (keyUp(Input.Keys.LEFT))
-//            p1.b2body.setLinearVelocity(new Vector2(0f,p1.b2body.getLinearVelocity().y));
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+//            p1.b2body.setLinearVelocity(new Vector2(p1.b2body.getLinearVelocity().x, 0f));
+//            p1.b2body.applyLinearImpulse(new Vector2(0, 5f), p1.b2body.getWorldCenter(), true);
+//        }
+//
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+//            p1.b2body.setLinearVelocity(2f, p1.b2body.getLinearVelocity().y);
+//        }
+//
+//        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && p1.b2body.getLinearVelocity().x <= 2) {
+//            p1.b2body.applyLinearImpulse(new Vector2(0.1f, 0), p1.b2body.getWorldCenter(), true);
+//        }
+//
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
+//            p1.b2body.setLinearVelocity(-2f, p1.b2body.getLinearVelocity().y);
+//        }
+//
+//        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && p1.b2body.getLinearVelocity().x >= -2) {
+//            p1.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), p1.b2body.getWorldCenter(), true);
+//        }
+//
+//        //Player change
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+//            p1.switchPlayer(-1);
+//        }
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+//            p1.switchPlayer(1);
+//        }
     }
 
     public void update(float dt) {
         handleInput(dt);
+        p1.updateMotion(dt);
 
         world.step(1 / 60f, 6, 2);
 
@@ -103,6 +109,11 @@ public class PlayScreen implements Screen{
 
         if (p1.b2body.getPosition().x > gamePort.getWorldWidth() / 2)
             gamecam.position.x = p1.b2body.getPosition().x;
+
+//        gamecam.position.x = p1.b2body.getPosition().x;
+//        gamecam.position.y = p1.b2body.getPosition().y;
+
+//        System.out.println(p1.b2body.getPosition().x + p1.b2body.getPosition().y);
 
         gamecam.update();
         renderer.setView(gamecam);
